@@ -44,4 +44,12 @@ All colors in the page use custom CSS classes (`.text-accent`, `.text-heading`, 
 
 All resume data (`experience`, `skills`, `certifications`, `hackathons`) is defined as plain arrays at the top of `app/page.tsx`. Edit those arrays to update content — no other files need to change.
 
-Note: the `hackathons` array is rendered under the section heading **"Competitions"**.
+Note: the `hackathons` array is rendered under the section heading **"Competitions"** (section `id="competitions"`). The nav links use anchor IDs `#experience`, `#stack`, `#competitions`, `#certifications` — these must match the `id` attributes on `<section>` elements in `page.tsx`.
+
+## Exceptions to the no-hardcoded-colors rule
+
+The hero tagline in `page.tsx` intentionally uses hardcoded Tailwind colors (`text-cyan-400`, `text-amber-400`, `text-purple-400`) for decorative accent words — these are a deliberate design choice, not an oversight. All other text must use the CSS variable classes listed above.
+
+## Unused CSS
+
+`globals.css` defines `.timeline-line` and `.timeline-dot` for a potential education/timeline section. These classes are not currently rendered anywhere in `page.tsx`.
