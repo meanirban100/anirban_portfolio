@@ -180,7 +180,7 @@ export default function Home() {
           {/* Name */}
           <h1 className="text-6xl md:text-8xl font-extrabold text-heading tracking-tight leading-none mb-6">
             Anirban<br />
-            <span className="text-accent"></span>
+            <span className="text-accent">Banerjee</span>
           </h1>
 
           {/* Tagline */}
