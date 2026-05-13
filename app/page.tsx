@@ -110,10 +110,14 @@ const skills = [
     items: ["Delta Lake", "Cosmos DB", "MongoDB", "SQL Server", "Oracle", "Teradata", "Dremio"],
   },
   {
-    label: "DevOps",
-    items: [ "Azure DevOps", "GitHub Actions", "Jenkins","Docker", "Kubernetes", "Bicep"],
+    label: "DevOps & Source Control",
+    items: ["GitHub", "GitLab", "Bitbucket", "Azure Repos", "Azure DevOps", "Bicep", "Git Actions", "Docker", "Kubernetes"],
   },
-  { label: "Visualization", items: ["Power BI","Tableau"] },
+  {
+    label: "ITSM & Collaboration",
+    items: ["ServiceNow", "Jira", "Rally", "Confluence", "SharePoint", "Azure Boards (ADO)"],
+  },
+  { label: "Visualization", items: ["Power BI", "Tableau"] },
 ];
 
 type Issuer = "Microsoft" | "Databricks" | "Dell" | "HackerRank";
@@ -250,20 +254,21 @@ function AWSHeroLogo() {
 }
 
 function GCPHeroLogo() {
-  // Google Cloud — four coloured shapes forming the cloud mark
   return (
-    <svg width="44" height="40" viewBox="0 0 64 52" aria-hidden="true">
-      {/* Cloud body */}
-      <path d="M40 10a14 14 0 0 0-13.1 9.1A10 10 0 1 0 28 39h12a12 12 0 0 0 0-24 12.2 12.2 0 0 0-3.1.4A14 14 0 0 0 40 10z" fill="#4285F4"/>
-      {/* Coloured segments — Google's 4-colour identity */}
-      <circle cx="16" cy="29" r="10" fill="#EA4335"/>
-      <circle cx="16" cy="29" r="10" fill="#4285F4" clipPath="url(#gcp-top)"/>
-      <circle cx="40" cy="27" r="12" fill="#34A853"/>
-      <circle cx="40" cy="27" r="12" fill="#FBBC05" clipPath="url(#gcp-left)"/>
+    <svg width="44" height="36" viewBox="0 0 80 64" aria-hidden="true">
       <defs>
-        <clipPath id="gcp-top"><rect x="0" y="0" width="64" height="27"/></clipPath>
-        <clipPath id="gcp-left"><rect x="0" y="0" width="40" height="52"/></clipPath>
+        <clipPath id="gcp-cloud">
+          <path d="M55 18.5a17 17 0 0 0-30.2-2A13 13 0 0 0 12 29.5a13 13 0 0 0 13 13H55a11 11 0 0 0 0-22 10.7 10.7 0 0 0-3.2.5A17 17 0 0 0 55 18.5z"/>
+        </clipPath>
       </defs>
+      {/* Cloud base */}
+      <path d="M55 18.5a17 17 0 0 0-30.2-2A13 13 0 0 0 12 29.5a13 13 0 0 0 13 13H55a11 11 0 0 0 0-22 10.7 10.7 0 0 0-3.2.5A17 17 0 0 0 55 18.5z" fill="#4285F4"/>
+      {/* Red — lower-left quarter */}
+      <rect x="0"  y="33" width="30" height="16" fill="#EA4335" clipPath="url(#gcp-cloud)"/>
+      {/* Green — lower-right quarter */}
+      <rect x="30" y="36" width="50" height="12" fill="#34A853" clipPath="url(#gcp-cloud)"/>
+      {/* Yellow — right arc area */}
+      <rect x="52" y="18" width="28" height="22" fill="#FBBC05" clipPath="url(#gcp-cloud)"/>
     </svg>
   );
 }
@@ -308,6 +313,7 @@ export default function Home() {
       </nav>
 
       {/* Hero */}
+      <div className="hero-section">
       <header className="pt-32 pb-12 px-6 max-w-6xl mx-auto">
         <div className="max-w-4xl">
             <p className="mono text-accent mb-4 text-xs tracking-widest uppercase">Hi, I architect/build data systems</p>
@@ -318,20 +324,27 @@ export default function Home() {
               <span className="text-accent">Banerjee</span>
             </h1>
 
+            {/* Roles */}
+            <div className="flex flex-wrap gap-3 mb-7">
+              <span className="mono text-sm font-semibold px-4 py-1.5 rounded-full border border-cyan-400/40 bg-cyan-400/10 text-cyan-400 tracking-wide">Technical Architect</span>
+              <span className="mono text-sm font-semibold px-4 py-1.5 rounded-full border border-amber-400/40 bg-amber-400/10 text-amber-400 tracking-wide">Data Engineer</span>
+              <span className="mono text-sm font-semibold px-4 py-1.5 rounded-full border border-purple-400/40 bg-purple-400/10 text-purple-400 tracking-wide">Generative AI Practitioner</span>
+            </div>
+
             {/* Tagline */}
-            <p className="text-xl md:text-2xl font-semibold text-heading mb-5 leading-snug">
+            <p className="text-2xl md:text-4xl font-bold text-heading mb-6 leading-snug">
               Building{" "}
-              <span className="text-cyan-400 italic">Intelligent</span>,{" "}
-              <span className="text-amber-400 italic">Scalable</span>, and{" "}
-              <span className="text-purple-400 italic">Governed</span>{" "}
+              <span className="text-cyan-200 italic">Intelligent</span>,{" "}
+              <span className="text-amber-200 italic">Scalable</span>, and{" "}
+              <span className="text-purple-200 italic">Governed</span>{" "}
               Data Platforms.
             </p>
 
             <p className="text-base mb-8 max-w-2xl leading-relaxed text-body">
-              Technical Architect & Data Engineer with 15+ years building large-scale data platforms across{" "}
+              Technical Architect & Data Engineer building large-scale data platforms across{" "}
               <span className="text-accent mono">Retail and Healthcare</span> Sector. Specializing in
-              cloud migrations, lakehouse architecture, cost optimization, and{" "}
-              <span className="text-heading font-medium">Generative AI</span> on Azure, AWS, and GCP.
+              cloud migrations, lakehouse architecture, cost optimization, and Generative AI on {" "}
+              <span className="text-heading font-medium">Azure, AWS, and GCP.</span>
             </p>
 
             <div className="flex flex-wrap gap-4 mb-10">
@@ -339,7 +352,7 @@ export default function Home() {
                 href="https://linkedin.com/in/abanerjee1985"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary mono"
+                className="btn-outline mono"
               >
                 LinkedIn
               </a>
@@ -352,17 +365,18 @@ export default function Home() {
                 GitHub
               </a>
               <a
-                href="mailto:helloanirban@gmail.com"
-                className="btn-outline mono"
+                href="/Anirban_Banerjee_resume.pdf"
+                download
+                className="btn-primary mono"
               >
-                Email
+                Resume
               </a>
             </div>
 
             {/* Stats strip */}
             <div className="flex flex-wrap gap-x-6 gap-y-2 pt-8 border-t border-theme">
               <span className="mono text-xs text-accent border border-theme rounded px-3 py-1">📍 Redmond, WA</span>
-              <span className="mono text-xs text-accent border border-theme rounded px-3 py-1">15+ Years Experience</span>
+
               <span className="mono text-xs text-accent border border-theme rounded px-3 py-1">Azure · AWS · GCP</span>
             </div>
 
@@ -391,6 +405,7 @@ export default function Home() {
             </div>
         </div>
       </header>
+      </div>
 
       <main className="max-w-6xl mx-auto px-6 pb-20 space-y-12">
 
@@ -559,28 +574,15 @@ export default function Home() {
             Contact
           </a>
         </div>
-        <p className="mono text-[10px] tracking-widest text-faint mb-2">
+        <p className="mono text-[10px] tracking-widest text-faint mb-5">
           © {new Date().getFullYear()} Anirban Banerjee
         </p>
         <p className="mono text-[10px] text-faint">
-          Made with ♥ using{" "}
-          <a
-            href="https://claude.ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-accent hover:underline"
-          >
-            Claude
-          </a>
-          {" & "}
-          <a
-            href="https://vercel.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-accent hover:underline"
-          >
-            Vercel
-          </a>
+          Built with{" "}
+          <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Claude</a>
+          {" · "}
+          Deployed on{" "}
+          <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Vercel</a>
         </p>
       </footer>
     </>

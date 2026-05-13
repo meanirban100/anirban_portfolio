@@ -53,3 +53,7 @@ The hero tagline in `page.tsx` intentionally uses hardcoded Tailwind colors (`te
 ## Unused CSS
 
 `globals.css` defines `.timeline-line` and `.timeline-dot` for a potential education/timeline section. These classes are not currently rendered anywhere in `page.tsx`.
+
+## Next.js version note
+
+This project uses Next.js 16, which has breaking changes from earlier versions. Before writing any Next.js-specific code, check `node_modules/next/dist/docs/` for the relevant guide. APIs, conventions, and file structure may differ from training data.

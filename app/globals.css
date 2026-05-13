@@ -47,6 +47,7 @@ body {
 .text-heading { color: var(--text-h); }
 .text-body    { color: var(--text-b); }
 .text-faint   { color: var(--text-faint); }
+.bg-card      { background-color: var(--card-bg); }
 
 /* ── Font ────────────────────────────────────────────── */
 .mono {
@@ -119,10 +120,6 @@ body {
   transition: background-color 0.2s;
 }
 
-.btn-outline:hover {
-  background-color: color-mix(in srgb, var(--accent) 10%, transparent);
-}
-
 .btn-contact {
   border: 1px solid var(--accent);
   color: var(--accent);
@@ -160,3 +157,37 @@ body {
 /* ── Education timeline ──────────────────────────────── */
 .timeline-line  { border-color: var(--border); }
 .timeline-dot   { background: var(--accent); }
+
+/* ── Hero glow ───────────────────────────────────────── */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: -160px;
+  left: -160px;
+  width: 680px;
+  height: 680px;
+  background: radial-gradient(circle at center, color-mix(in srgb, var(--accent) 11%, transparent) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  right: -80px;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle at center, color-mix(in srgb, #a855f7 9%, transparent) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* ── Button glow on outline hover ────────────────────── */
+.btn-outline:hover {
+  background-color: color-mix(in srgb, var(--accent) 10%, transparent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 28%, transparent);
+}
