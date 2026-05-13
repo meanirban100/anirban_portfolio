@@ -13,8 +13,7 @@ npm run lint      # run ESLint
 ## Deploy to Vercel
 
 ```bash
-npx vercel        # first deploy — follow prompts
-npx vercel --prod # subsequent production deploys
+npx vercel --prod
 ```
 
 Or connect the GitHub repo to Vercel for automatic deploys on push.
@@ -25,21 +24,24 @@ Next.js 16 (App Router), React 19, Tailwind CSS v4, TypeScript. No test framewor
 
 ## Architecture
 
-Single-page portfolio using App Router. All content lives directly in `app/page.tsx` as typed data arrays — no CMS, no database, no API routes.
+Single-page portfolio using App Router. All content lives directly in `app/page.tsx` as typed data arrays — no CMS, no database, no API routes. One client component exists for the theme toggle.
 
-**Structure:**
-- `app/layout.tsx` — root layout, metadata, Geist font
-- `app/page.tsx` — entire portfolio: data arrays + single default export rendering all sections
-- `app/globals.css` — minimal global styles (Tailwind v4 `@import "tailwindcss"` + CSS vars)
+**Key files:**
+- `app/layout.tsx` — root layout with Inter + Fira Code fonts (`next/font/google`), `suppressHydrationWarning` on `<html>`, and an inline `<script>` that reads `localStorage` to set `data-theme` before first paint (prevents theme flash)
+- `app/page.tsx` — entire portfolio: data arrays at top + single Server Component rendering all sections
+- `app/globals.css` — all styling: Tailwind v4 import, CSS variables for both themes, and custom utility classes
+- `app/components/ThemeToggle.tsx` — the only Client Component; toggles `data-theme` on `<html>` and persists to `localStorage`
 
-**Design constraints:**
-- Pure white background (`#ffffff`), `#111` text, gray-400/500/600 for hierarchy
-- Tailwind utility classes only — no CSS modules, no external UI libraries
-- No images, no animations, no dark mode toggle
-- Sections: Hero → Experience → Skills → Competitions → Certifications → Education
+## Theming
+
+Two themes are defined entirely in CSS variables in `globals.css`:
+- **Dark** (default): navy `#0a192f` background, teal `#64ffda` accent — set on `:root`
+- **Light**: slate-white `#f8fafc` background, sky `#0284c7` accent — set on `[data-theme="light"]`
+
+All colors in the page use custom CSS classes (`.text-accent`, `.text-heading`, `.text-body`, `.text-faint`, `.border-theme`) or component classes (`.section-card`, `.stack-card`, `.skill-tag`, `.btn-primary`, `.btn-outline`, `.btn-contact`, `.nav-bg`, `.mono`) defined in `globals.css`. **Do not use hardcoded Tailwind color values** (e.g. `text-[#e6f1ff]`) — they won't respond to theme switching.
 
 ## Updating content
 
-All resume data is defined as plain arrays at the top of `app/page.tsx`. Edit those arrays to update content — no other files need to change.
+All resume data (`experience`, `skills`, `certifications`, `hackathons`) is defined as plain arrays at the top of `app/page.tsx`. Edit those arrays to update content — no other files need to change.
 
-Note: the `hackathons` array is rendered under the section heading **"Competitions"** — the variable name and the displayed heading differ.
+Note: the `hackathons` array is rendered under the section heading **"Competitions"**.
